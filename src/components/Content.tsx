@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 
 import { MovieCard } from './MovieCard';
 
@@ -22,7 +22,7 @@ interface GenreResponseProps {
   title: string;
 }
 
-export function Content({ selectedGenreId }: { selectedGenreId: number }) {
+function ContentComponent({ selectedGenreId }: { selectedGenreId: number }) {
   // Complete aqui
 
   const [movies, setMovies] = useState<MovieProps[]>([]);
@@ -54,3 +54,5 @@ export function Content({ selectedGenreId }: { selectedGenreId: number }) {
       </div>
   )
 }
+
+export const Content = memo(ContentComponent, (prevProps, nextProps) => prevProps.selectedGenreId === nextProps.selectedGenreId);
